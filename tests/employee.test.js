@@ -14,14 +14,14 @@ describe("Employee", () => {
 
   it("should be able to set a id value when passed in as a constructor argument", () => {
     const employeeId = "US111111";
-    const newEmployee = new Employee(employeeId);
-    expect(newEmployee.employeeId).toEqual(employeeId);
+    const newEmployee = new Employee("Daniel", employeeId);
+    expect(newEmployee.id).toEqual(employeeId);
   });
 
   it("should be able to set an email value when passed in as a constructor argument", () => {
     const employeeEmail = "something@gmail.com";
-    const newEmployee = new Employee(employeeEmail);
-    expect(newEmployee.employeeEmail).toEqual(employeeEmail);
+    const newEmployee = new Employee("Daniel", "US111111", employeeEmail);
+    expect(newEmployee.email).toEqual(employeeEmail);
   });
 
   describe("getName", () => {
@@ -38,7 +38,7 @@ describe("Employee", () => {
       const idVal = "US111111";
       const newEmployee = new Employee("Daniel", idVal);
 
-      expect(newEmployee.getID()).toEqual(idVal);
+      expect(newEmployee.getId()).toEqual(idVal);
     });
   });
 
