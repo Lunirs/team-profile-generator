@@ -13,7 +13,7 @@ describe("Engineer", () => {
     expect(newEngineer.github).toEqual(github);
   });
 
-  describe("getGithubUser", () => {
+  describe("getGithub", () => {
     it("should be able to retrieve an engineer's github user name", () => {
       const githubUser = "Lunirs";
       const newEngineer = new Engineer(
@@ -23,11 +23,11 @@ describe("Engineer", () => {
         githubUser
       );
 
-      expect(newEngineer.getGithubUser()).toEqual(githubUser);
+      expect(newEngineer.getGithub()).toEqual(githubUser);
     });
   });
 
-  describe("getEmployeeTitle", () => {
+  describe("getRole", () => {
     it("should be able to retrieve the job title of the employee", () => {
       const title = "Engineer";
       const newEngineer = new Engineer(
@@ -37,7 +37,7 @@ describe("Engineer", () => {
         "Lunirs"
       );
 
-      expect(newEngineer.getEmployeeTitle()).toEqual(title);
+      expect(newEngineer.getRole()).toEqual(title);
     });
   });
 });

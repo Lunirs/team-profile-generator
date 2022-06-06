@@ -51,7 +51,7 @@ describe("Employee", () => {
     });
   });
 
-  describe("getEmployeeTitle", () => {
+  describe("getRole", () => {
     it("should be able to retrieve the job title of the employee", () => {
       const title = "Employee";
       const newEmployee = new Employee(
@@ -60,7 +60,7 @@ describe("Employee", () => {
         "something@gmail.com"
       );
 
-      expect(newEmployee.getEmployeeTitle()).toEqual(title);
+      expect(newEmployee.getRole()).toEqual(title);
     });
   });
 });
