@@ -1,41 +1,43 @@
-describe("Engineer", () => {
-  it("should be able to set a github account when passed in as a constructor argument", () => {
-    const github = "Lunirs";
-    const newEngineer = new Engineer(
+const Intern = require("../lib/intern");
+
+describe("Intern", () => {
+  it("should be able to set a school name when passed in as a constructor argument", () => {
+    const school = "UIUC";
+    const newIntern = new Intern(
       "Daniel",
       "US111111",
       "something@gmail.com",
-      github
+      school
     );
 
-    expect(newEngineer.github).toEqual(github);
+    expect(newIntern.school).toEqual(school);
   });
 
-  describe("getGithubUser", () => {
-    it("should be able to retrieve an engineer's github user name", () => {
-      const githubUser = "Lunirs";
-      const newEngineer = new Engineer(
+  describe("getSchoolName", () => {
+    it("should be able to retrieve an Intern's school name", () => {
+      const school = "UIUC";
+      const newIntern = new Intern(
         "Daniel",
         "US111111",
         "something@gmail.com",
-        githubUser
+        school
       );
 
-      expect(newEngineer.getGithubUser()).toEqual(githubUser);
+      expect(newEngineer.getSchoolName()).toEqual(school);
     });
   });
 
   describe("getEmployeeTitle", () => {
     it("should be able to retrieve the job title of the employee", () => {
-      const title = "Engineer";
-      const newEngineer = new Engineer(
+      const title = "Intern";
+      const newIntern = new Intern(
         "Daniel",
         "US111111",
         "something@gmail.com",
-        "Lunirs"
+        "UIUC"
       );
 
-      expect(newEngineer.getEmployeeTitle()).toEqual(title);
+      expect(newIntern.getEmployeeTitle()).toEqual(title);
     });
   });
 });
