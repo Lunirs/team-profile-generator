@@ -61,6 +61,8 @@ npm test
 
 The test is set to watchAll and will update as you save.
 
+[Click here](https://youtu.be/4Jy_nMIjCN0) to see my test passing on my machine.
+
 ## Questions
 
 If you have any questions, please feel free to reach out to me via:
