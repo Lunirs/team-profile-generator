@@ -7,6 +7,10 @@ const Intern = require("./lib/intern");
 
 const teamMemberArr = [];
 
+const init = () => {
+  addEmployee();
+};
+
 const addEmployee = () => {
   inquirer
     .prompt([
@@ -76,7 +80,33 @@ const addEmployee = () => {
     });
 };
 
-const generateEmployeeCard = (employee) => {};
+const generateEmployeeCard = (employee) => {
+  let roleContent;
+  switch (employee.getRole()) {
+    case "Manager":
+      roleContent = `Office Number: ${employee.officeNumber()}`;
+      break;
+    case "Engineer":
+      roleContent = `GitHub: <a href="https://github.com/${employee.getGithub()}" target="blank">${employee.getGithub()}</a>`;
+      break;
+    case "Intern":
+      roleContent = `School Name: ${employee.getSchool()}`;
+      break;
+  }
+  return `<div class="card text-white bg-danger mb-5 mr-4" style="max-width: 18rem">
+    <div class="card-header">
+    <h5>${employee.getName()}</h5>
+    </div>
+    <div class="card-body">
+    <ul class="list-group">
+    <li class="list-group-item bg-danger">${employee.getRole()}</li>
+    <li class="list-group-item bg-danger">ID: ${employee.getId()}</li>
+    <li class="list-group-item bg-danger">Email: ${employee.getEmail()}</li>
+    <li class="list-group-item bg-danger">${roleContent}</li>
+</ul>
+</div>
+</div>`;
+};
 
 const renderEmployeeCard = (teamMemberArr) => {};
 
@@ -89,3 +119,5 @@ const writeToFile = (fileName, data) => {
       : console.log("Successfully created your HTML File!");
   });
 };
+
+init();
