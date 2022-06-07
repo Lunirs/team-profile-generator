@@ -93,19 +93,20 @@ const generateEmployeeCard = (employee) => {
       roleContent = `School Name: ${employee.getSchool()}`;
       break;
   }
-  return `<div class="card text-white bg-danger mb-5 mr-4" style="max-width: 18rem">
-    <div class="card-header">
-    <h5>${employee.getName()}</h5>
-    </div>
-    <div class="card-body">
-    <ul class="list-group">
-    <li class="list-group-item bg-danger">${employee.getRole()}</li>
-    <li class="list-group-item bg-danger">ID: ${employee.getId()}</li>
-    <li class="list-group-item bg-danger">Email: ${employee.getEmail()}</li>
-    <li class="list-group-item bg-danger">${roleContent}</li>
-</ul>
-</div>
-</div>`;
+  return `
+        <div class="card text-white bg-danger mb-5 mr-4" style="max-width: 18rem">
+          <div class="card-header">
+            <h5>${employee.getName()}</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item bg-danger">${employee.getRole()}</li>
+              <li class="list-group-item bg-danger">ID: ${employee.getId()}</li>
+              <li class="list-group-item bg-danger">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
+              <li class="list-group-item bg-danger">${roleContent}</li>
+            </ul>
+          </div>
+        </div>`;
 };
 
 const renderEmployeeCard = (teamMemberArr) => {
@@ -116,7 +117,40 @@ const renderEmployeeCard = (teamMemberArr) => {
   return htmlCards.join("");
 };
 
-const generateHTML = (teamMemberArr) => {};
+const generateHTML = (teamMemberArr) => {
+  return `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Profile Generator! | Quick access to your employee info</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"/>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body class="bg-dark">
+    <header>
+      <div class="jumbotron jumbotron-fluid bg-danger text-white">
+        <div class="container">
+          <h1 class="display-4 text-center">My Team!</h1>
+          <p class="lead text-center">
+            Readily displays your team information.
+          </p>
+        </div>
+      </div>
+    </header>
+    <main class="container row m-auto d-flex justify-content-around align-items-center">
+            ${renderEmployeeCard(teamMemberArr)}
+    </main>
+  </body>
+</html>
+`;
+};
 
 const writeToFile = (fileName, data) => {
   fs.writeFile(fileName, data, (err) => {
