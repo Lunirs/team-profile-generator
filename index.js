@@ -5,6 +5,8 @@ const Engineer = require("./lib/engineer");
 const Manager = require("./lib/manager");
 const Intern = require("./lib/intern");
 
+const teamMemberArr = [];
+
 const addEmployee = () => {
   inquirer
     .prompt([
@@ -30,28 +32,60 @@ const addEmployee = () => {
         message: "Please input your team member's email address",
       },
     ])
-    .then(function ({ name, id, email, role }) {
+    .then(({ name, id, email, role }) => {
       let empParam = "";
       if (role === "Manager") {
-        empParam === "Office Number";
+        empParam = "Office Number";
       } else if (role === "Engineer") {
-        empParam === "Github Username";
+        empParam = "Github Username";
       } else if (role === "Intern") {
-        empParam === "School's name";
+        empParam = "School's name";
       }
 
-      inquirer.prompt([
-        {
-          type: "input",
-          name: "empParam",
-          message: `Please input your team member's ${empParam}`,
-        },
-        {
-          type: "list",
-          name: "addMore",
-          message: "Do you have more team members to add?",
-          choices: ["Y", "N"],
-        },
-      ]);
+      inquirer
+        .prompt([
+          {
+            type: "input",
+            name: "roleContent",
+            message: `Please input your team member's ${empParam}`,
+          },
+          {
+            type: "list",
+            name: "addMore",
+            message: "Do you have more team members to add?",
+            choices: ["Y", "N"],
+          },
+        ])
+        .then(({ roleContent, addMore }) => {
+          let newEmployee;
+          if (role === "Manager") {
+            newEmployee = new Manager(name, id, email, roleContent);
+          } else if (role === "Engineer") {
+            newEmployee = new Engineer(name, id, email, roleContent);
+          } else if (role === "Intern") {
+            newEmployee = new Intern(name, id, email, roleContent);
+          }
+          teamMemberArr.push(newEmployee);
+          console.log(teamMemberArr);
+          if (addMore === "Y") {
+            addEmployee();
+          } else {
+            writeToFile("./dist/index.html", generateHTML(teamMemberArr));
+          }
+        });
     });
+};
+
+const generateEmployeeCard = (employee) => {};
+
+const renderEmployeeCard = (teamMemberArr) => {};
+
+const generateHTML = (teamMemberArr) => {};
+
+const writeToFile = (fileName, data) => {
+  fs.writeFile(fileName, data, (err) => {
+    err
+      ? console.error(`Failed to create HTML file: ${err}`)
+      : console.log("Successfully created your HTML File!");
+  });
 };
