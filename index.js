@@ -94,16 +94,16 @@ const generateEmployeeCard = (employee) => {
       break;
   }
   return `
-        <div class="card text-white bg-danger mb-5 mr-4" style="max-width: 18rem">
+        <div class="card text-white bg-danger mb-5 mr-4 col-sm-1 col-md-4 col-lg-4" style="max-width: 18rem">
           <div class="card-header">
-            <h5>${employee.getName()}</h5>
+            <h2>${employee.getName()}</h2>
           </div>
           <div class="card-body">
             <ul class="list-group">
-              <li class="list-group-item bg-danger">${employee.getRole()}</li>
-              <li class="list-group-item bg-danger">ID: ${employee.getId()}</li>
-              <li class="list-group-item bg-danger">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
-              <li class="list-group-item bg-danger">${roleContent}</li>
+              <li class="list-group-item bg-danger param">${employee.getRole()}</li>
+              <li class="list-group-item bg-danger param">ID: ${employee.getId()}</li>
+              <li class="list-group-item bg-danger param">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
+              <li class="list-group-item bg-danger param">${roleContent}</li>
             </ul>
           </div>
         </div>`;
@@ -131,7 +131,7 @@ const generateHTML = (teamMemberArr) => {
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
       integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
       crossorigin="anonymous"/>
-    <link rel="stylesheet" href="./assets/styles.css" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
   </head>
   <body class="bg-dark">
     <header>
