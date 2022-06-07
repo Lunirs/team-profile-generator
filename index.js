@@ -97,10 +97,10 @@ const generateEmployeeCard = (employee) => {
         <div class="card text-white bg-danger mb-5 mr-4 col-sm-1 col-md-4 col-lg-4" style="max-width: 18rem">
           <div class="card-header">
             <h2>${employee.getName()}</h2>
+            <h3>${employee.getRole()}</h3>
           </div>
           <div class="card-body">
             <ul class="list-group">
-              <li class="list-group-item bg-danger param">${employee.getRole()}</li>
               <li class="list-group-item bg-danger param">ID: ${employee.getId()}</li>
               <li class="list-group-item bg-danger param">Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
               <li class="list-group-item bg-danger param">${roleContent}</li>
