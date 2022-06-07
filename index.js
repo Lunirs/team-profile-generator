@@ -108,7 +108,13 @@ const generateEmployeeCard = (employee) => {
 </div>`;
 };
 
-const renderEmployeeCard = (teamMemberArr) => {};
+const renderEmployeeCard = (teamMemberArr) => {
+  const htmlCards = [];
+  teamMemberArr.forEach((employee) => {
+    htmlCards.push(generateEmployeeCard(employee));
+  });
+  return htmlCards.join("");
+};
 
 const generateHTML = (teamMemberArr) => {};
 
