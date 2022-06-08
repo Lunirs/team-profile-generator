@@ -1,3 +1,4 @@
+// Importing in Classes
 const inquirer = require("inquirer");
 const fs = require("fs");
 const Employee = require("./lib/employee");
@@ -5,11 +6,18 @@ const Engineer = require("./lib/engineer");
 const Manager = require("./lib/manager");
 const Intern = require("./lib/intern");
 
+// empty team member array
+
 const teamMemberArr = [];
+
+// function to initialize once the index.js file is run.
+// Will start the prompt
 
 const init = () => {
   addEmployee();
 };
+
+//function that contains the prompts.
 
 const addEmployee = () => {
   inquirer
@@ -36,6 +44,8 @@ const addEmployee = () => {
         message: "Please input your team member's email address",
       },
     ])
+    // Once the top portion is completed, depending on the role of the current
+    //employee, it will go through an if statement and generate tne next questions.
     .then(({ name, id, email, role }) => {
       let empParam = "";
       if (role === "Manager") {
@@ -46,6 +56,8 @@ const addEmployee = () => {
         empParam = "School's name";
       }
 
+     // questions based on what role was chosen and to ask if they want to add more
+     //team members 
       inquirer
         .prompt([
           {
@@ -60,6 +72,7 @@ const addEmployee = () => {
             choices: ["Y", "N"],
           },
         ])
+        //Take the inputs and add them to speficit constructor of the class
         .then(({ roleContent, addMore }) => {
           let newEmployee;
           if (role === "Manager") {
@@ -69,10 +82,13 @@ const addEmployee = () => {
           } else if (role === "Intern") {
             newEmployee = new Intern(name, id, email, roleContent);
           }
+          // push the result to the team member array defined up top.
           teamMemberArr.push(newEmployee);
           console.log(teamMemberArr);
+          // if the user pressed Y to add more, initiate the inquirer prompt agian.
           if (addMore === "Y") {
             addEmployee();
+            // if the user pressed N to add more, finish and generate the html
           } else {
             writeToFile("./dist/index.html", generateHTML(teamMemberArr));
           }
@@ -80,6 +96,8 @@ const addEmployee = () => {
     });
 };
 
+// function to generate the card of the employee depending on their role.
+// utilizes switch case statement to add the correct content to the HTML page.
 const generateEmployeeCard = (employee) => {
   let roleContent;
   switch (employee.getRole()) {
@@ -109,6 +127,8 @@ const generateEmployeeCard = (employee) => {
         </div>`;
 };
 
+// function to add the generated cards into an array that would hold the cards.
+//then join them to create the entire card section which will be used in generate HTML
 const renderEmployeeCard = (teamMemberArr) => {
   const htmlCards = [];
   teamMemberArr.forEach((employee) => {
@@ -117,6 +137,7 @@ const renderEmployeeCard = (teamMemberArr) => {
   return htmlCards.join("");
 };
 
+//takes the joined HTML cards and appends it to the card container "main"
 const generateHTML = (teamMemberArr) => {
   return `
 <!DOCTYPE html>
@@ -152,6 +173,8 @@ const generateHTML = (teamMemberArr) => {
 `;
 };
 
+// function to create a file with the user input results.
+
 const writeToFile = (fileName, data) => {
   fs.writeFile(fileName, data, (err) => {
     err
@@ -160,4 +183,6 @@ const writeToFile = (fileName, data) => {
   });
 };
 
+
+// starts up the inquirer prompt upon being run
 init();
